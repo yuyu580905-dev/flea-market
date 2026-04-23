@@ -1,0 +1,39 @@
+/* ========================
+ base
+======================== */
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+
+/* ========================
+ header
+======================== */
+
+.header {
+    background: #000;
+}
+
+.header__inner {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header__logo {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* ========================
+ main layout
+======================== */
+
+.main {
+    max-width: 1230px;
+    margin: 0 auto;
+    padding: 60px 15px;
+}
