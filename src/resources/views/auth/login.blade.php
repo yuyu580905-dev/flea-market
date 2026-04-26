@@ -3,58 +3,62 @@
 @section('title', 'ログイン')
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('css/form.css') }}">
     <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
 @endsection
 
 @section('content')
 
-    <div class="auth-form">
+    <div class="auth">
 
-        <h1 class="auth-form__heading">
-            ログイン
-        </h1>
+        <div class="form">
 
-        <form method="POST" action="/login" novalidate>
-            @csrf
+            <h1 class="form__heading">
+                ログイン
+            </h1>
 
-            <div class="auth-form__group">
-                <label class="auth-form__label" for="email">
-                    メールアドレス
-                </label>
+            <form method="POST" action="/login" novalidate>
+                @csrf
 
-                <input class="auth-form__input" type="email" name="email" id="email" value="{{ old('email') }}">
+                <div class="form__group">
+                    <label class="form__label" for="email">
+                        メールアドレス
+                    </label>
 
-                @error('email')
-                    <div class="auth-form__error">
-                        {{ $message }}
-                    </div>
-                @enderror
+                    <input class="form__input" type="email" name="email" id="email" value="{{ old('email') }}">
+
+                    @error('email')
+                        <div class="form__error">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <div class="form__group">
+                    <label class="form__label">
+                        パスワード
+                    </label>
+
+                    <input class="form__input" type="password" name="password">
+
+                    @error('password')
+                        <div class="form__error">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+
+                <button class="form__button">
+                    ログインする
+                </button>
+
+            </form>
+
+            <div class="form__link">
+                <a href="/register" class="form__link-text">
+                    会員登録はこちら
+                </a>
             </div>
-
-            <div class="auth-form__group">
-                <label class="auth-form__label">
-                    パスワード
-                </label>
-
-                <input class="auth-form__input" type="password" name="password">
-
-                @error('password')
-                    <div class="auth-form__error">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-
-            <button class="auth-form__button">
-                ログインする
-            </button>
-
-        </form>
-
-        <div class="auth-form__link">
-            <a href="/register">
-                会員登録はこちら
-            </a>
         </div>
 
     </div>

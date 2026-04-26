@@ -1,0 +1,77 @@
+/* セクション見出し */
+.sell__section {
+    margin-top: 30px;
+}
+
+.sell__section-title {
+    font-size: 18px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+}
+
+/* 画像アップロード */
+.sell__image-box {
+    border: 1px dashed #ccc;
+    padding: 40px;
+    text-align: center;
+}
+
+.sell__image-input {
+    display: none;
+}
+
+.sell__image-button {
+    border: 1px solid #ff5555;
+    color: #ff5555;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* カテゴリ */
+.sell__categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.sell__category input {
+    display: none;
+}
+
+.sell__category-tag {
+    display: inline-block;
+    border: 1px solid #ff5555;
+    color: #ff5555;
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* 選択状態 */
+.sell__category input:checked+.sell__category-tag {
+    background-color: #ff5555;
+    color: #fff;
+}
+
+/* textareaだけ高さ差分 */
+.sell__textarea {
+    height: 120px;
+}
+
+/* 価格 */
+.sell__price-box {
+    display: flex;
+    align-items: center;
+}
+
+.sell__price-yen {
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.sell__price-input {
+    flex: 1;
+}

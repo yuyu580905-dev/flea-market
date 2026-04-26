@@ -1,0 +1,36 @@
+/* メッセージ */
+.verify__message {
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.8;
+    margin-bottom: 40px;
+}
+
+/* 中央寄せ */
+.verify__center {
+    text-align: center;
+}
+
+/* メインボタン */
+.verify__button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #ccc;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+}
+
+/* 再送ボタン（リンク風） */
+.verify__resend {
+    background: none;
+    border: none;
+    color: #0073ff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.verify__resend:hover {
+    text-decoration: underline;
+}

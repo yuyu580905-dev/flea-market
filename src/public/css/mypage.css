@@ -1,0 +1,80 @@
+/* 全体 */
+.mypage {
+    padding: 40px 60px;
+}
+
+/* ヘッダー */
+.mypage__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.mypage__profile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.mypage__avatar {
+    width: 80px;
+    height: 80px;
+    background-color: #ccc;
+    border-radius: 50%;
+}
+
+.mypage__username {
+    font-size: 24px;
+}
+
+/* 編集ボタン */
+.mypage__edit-button {
+    border: 1px solid #ff5555;
+    color: #ff5555;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+/* タブ */
+.mypage__tabs {
+    display: flex;
+    gap: 30px;
+    border-bottom: 1px solid #000;
+    margin-bottom: 30px;
+}
+
+.mypage__tab {
+    padding-bottom: 10px;
+    text-decoration: none;
+    color: #555;
+    font-weight: bold;
+}
+
+.mypage__tab--active {
+    color: #ff5555;
+}
+
+/* グリッド */
+.mypage__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* カード */
+.mypage__card {}
+
+/* 画像 */
+.mypage__image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: #ccc;
+    margin-bottom: 10px;
+}
+
+/* 商品名 */
+.mypage__item-name {
+    font-size: 14px;
+}

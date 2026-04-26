@@ -1,0 +1,66 @@
+/* フォーム共通レイアウト */
+.form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form__heading {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 40px;
+}
+
+.form__group {
+    margin-bottom: 25px;
+}
+
+.form__label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form__input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.form__button {
+    width: 100%;
+    padding: 15px;
+    background: #ff5555;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.form__button:hover {
+    opacity: 0.9;
+}
+
+.form__error {
+    color: #ff5555;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+/* フォーム下リンク（ログイン・登録切替など） */
+.form__link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* 汎用リンクスタイル */
+.form__link-text {
+    color: #0073ff;
+    text-decoration: none;
+}
+
+.form__link-text:hover {
+    text-decoration: underline;
+}
