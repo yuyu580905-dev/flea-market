@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Condition;
+use App\Models\Comment;
 
 class Item extends Model
 {
@@ -32,5 +33,9 @@ class Item extends Model
     public function condition()
     {
         return $this->belongsTo(Condition::class);
+    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

@@ -12,12 +12,12 @@
 
         {{-- 左：画像 --}}
         <div class="item-detail__image">
-            <img src="{{ asset('storage/items/' . $item->image) }}" alt="">
+            <img src="{{ asset('storage/items/' . $item->image) }}" alt="{{ $item->name }}"
+                class="item-detail__image-element">
         </div>
 
         {{-- 右：情報 --}}
         <div class="item-detail__content">
-
             <h1 class="item-detail__name">
                 {{ $item->name }}
             </h1>
@@ -32,8 +32,15 @@
 
             {{-- いいね・コメント --}}
             <div class="item-detail__meta">
-                <div>♡ {{ $item->likes_count ?? 0 }}</div>
-                <div>💬 {{ $item->comments_count ?? 0 }}</div>
+                <div class="item-detail__meta-item">
+                    <img src="{{ asset('images/icon-heart-default.png') }}" class="item-detail__icon">
+                    <span class="item-detail__meta-count">{{ $item->likes_count ?? 0 }}</span>
+                </div>
+
+                <div class="item-detail__meta-item">
+                    <img src="{{ asset('images/icon-comment.png') }}" class="item-detail__icon">
+                    <span class="item-detail__meta-count">{{ $item->comments_count ?? 0 }}</span>
+                </div>
             </div>
 
             {{-- 購入ボタン --}}
@@ -43,32 +50,39 @@
 
             {{-- 商品説明 --}}
             <div class="item-detail__section">
-                <h2>商品説明</h2>
+                <h2 class="item-detail__heading">商品説明</h2>
                 <p>{{ $item->description }}</p>
             </div>
 
-            {{-- 商品情報 --}}
             <div class="item-detail__section">
-                <h2>商品の情報</h2>
+                <h2 class="item-detail__heading">商品の情報</h2>
 
-                <p>カテゴリー：
-                    @foreach ($item->categories as $category)
-                        <span class="item-detail__category">
-                            {{ $category->name }}
-                        </span>
-                    @endforeach
-                </p>
+                {{-- カテゴリー --}}
+                <div class="item-detail__row">
+                    <span class="item-detail__label">カテゴリー</span>
+                    <div class="item-detail__value">
+                        @foreach ($item->categories as $category)
+                            <span class="item-detail__category">
+                                {{ $category->name }}
+                            </span>
+                        @endforeach
+                    </div>
+                </div>
 
-                <p>商品の状態：{{ $item->condition }}</p>
+                {{-- 商品の状態 --}}
+                <div class="item-detail__row">
+                    <span class="item-detail__label">商品の状態</span>
+                    <span class="item-detail__value">
+                        {{ $item->condition->name }}
+                    </span>
+                </div>
             </div>
 
             {{-- コメント --}}
             <div class="item-detail__section">
-                <h2>コメント（{{ $item->comments->count() }}）</h2>
-
+                <h2 class="item-detail__heading">コメント（{{ $item->comments->count() }}）</h2>
                 @foreach ($item->comments as $comment)
                     <div class="item-detail__comment">
-
                         <div class="item-detail__comment-user">
                             {{ $comment->user->name }}
                         </div>
@@ -76,16 +90,13 @@
                         <div class="item-detail__comment-body">
                             {{ $comment->content }}
                         </div>
-
                     </div>
                 @endforeach
             </div>
 
             {{-- コメント投稿 --}}
             <div class="item-detail__section">
-
-                <h2>商品へのコメント</h2>
-
+                <h2 class="item-detail__heading">商品へのコメント</h2>
                 <form method="POST" action="/comment">
                     @csrf
 
@@ -94,9 +105,7 @@
                     <button class="item-detail__button">
                         コメントを送信する
                     </button>
-
                 </form>
-
             </div>
 
         </div>

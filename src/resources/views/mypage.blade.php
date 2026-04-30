@@ -39,6 +39,7 @@
                 <div class="mypage__card">
                     <div class="mypage__image">
                         {{-- 画像 --}}
+
                     </div>
                     <p class="mypage__item-name">
                         {{ $item->name }}

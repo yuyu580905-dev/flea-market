@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Item;
+use App\Models\Condition;
 
 class ItemsTableSeeder extends Seeder
 {
@@ -22,8 +23,8 @@ class ItemsTableSeeder extends Seeder
                 'price' => 15000,
                 'brand' => 'Rolax',
                 'description' => 'スタイリッシュなデザインのメンズ腕時計',
-                'image' => 'storage/items/watch.jpg',
-                'condition_id' => 1,
+                'image' => 'clock.jpg',
+                'condition' => '良好',
                 'categories' => [1, 5]
             ],
 
@@ -33,8 +34,8 @@ class ItemsTableSeeder extends Seeder
                 'price' => 5000,
                 'brand' => '西芝',
                 'description' => '高速で信頼性の高いハードディスク',
-                'image' => 'storage/items/hdd.jpg',
-                'condition_id' => 2,
+                'image' => 'hdd.jpg',
+                'condition' => '目立った傷や汚れなし',
                 'categories' => [2]
             ],
 
@@ -44,8 +45,8 @@ class ItemsTableSeeder extends Seeder
                 'price' => 300,
                 'brand' => null,
                 'description' => '新鮮な玉ねぎ3束のセット',
-                'image' => 'storage/items/onion.jpg',
-                'condition_id' => 3,
+                'image' => 'onion.jpg',
+                'condition' => 'やや傷や汚れあり',
                 'categories' => [10]
             ],
 
@@ -55,8 +56,8 @@ class ItemsTableSeeder extends Seeder
                 'price' => 4000,
                 'brand' => null,
                 'description' => 'クラシックなデザインの革靴',
-                'image' => 'storage/items/shoes.jpg',
-                'condition_id' => 4,
+                'image' => 'shoes.jpg',
+                'condition' => '状態が悪い',
                 'categories' => [1, 5]
             ],
 
@@ -66,8 +67,8 @@ class ItemsTableSeeder extends Seeder
                 'price' => 45000,
                 'brand' => null,
                 'description' => '高性能なノートパソコン',
-                'image' => 'storage/items/laptop.jpg',
-                'condition_id' => 1,
+                'image' => 'laptop.jpg',
+                'condition' => '良好',
                 'categories' => [2]
             ],
 
@@ -77,8 +78,8 @@ class ItemsTableSeeder extends Seeder
                 'price' => 8000,
                 'brand' => null,
                 'description' => '高音質のレコーディング用マイク',
-                'image' => 'storage/items/mic.jpg',
-                'condition_id' => 2,
+                'image' => 'mic.jpg',
+                'condition' => '目立った傷や汚れなし',
                 'categories' => [2]
             ],
 
@@ -88,8 +89,8 @@ class ItemsTableSeeder extends Seeder
                 'price' => 3500,
                 'brand' => null,
                 'description' => 'おしゃれなショルダーバッグ',
-                'image' => 'storage/items/bag.jpg',
-                'condition_id' => 3,
+                'image' => 'bag.jpg',
+                'condition' => 'やや傷や汚れあり',
                 'categories' => [1, 4]
             ],
 
@@ -99,8 +100,8 @@ class ItemsTableSeeder extends Seeder
                 'price' => 500,
                 'brand' => null,
                 'description' => '使いやすいタンブラー',
-                'image' => 'storage/items/tumbler.jpg',
-                'condition_id' => 4,
+                'image' => 'tumbler.jpg',
+                'condition' => '状態が悪い',
                 'categories' => [10]
             ],
 
@@ -110,8 +111,8 @@ class ItemsTableSeeder extends Seeder
                 'price' => 4000,
                 'brand' => 'Starbacks',
                 'description' => '手動のコーヒーミル',
-                'image' => 'storage/items/grinder.jpg',
-                'condition_id' => 1,
+                'image' => 'grinder.jpg',
+                'condition' => '良好',
                 'categories' => [10]
             ],
 
@@ -121,8 +122,8 @@ class ItemsTableSeeder extends Seeder
                 'price' => 2500,
                 'brand' => null,
                 'description' => '便利なメイクアップセット',
-                'image' => 'storage/items/makeup.jpg',
-                'condition_id' => 2,
+                'image' => 'makeup.jpg',
+                'condition' => '目立った傷や汚れなし',
                 'categories' => [6]
             ],
 
@@ -132,11 +133,13 @@ class ItemsTableSeeder extends Seeder
         foreach ($items as $itemData) {
 
             $categories = $itemData['categories'];
+            $conditionName = $itemData['condition'];
+            unset($itemData['categories'], $itemData['condition']);
 
-            unset($itemData['categories']);
+            $condition = Condition::where('name', $conditionName)->first();
+            $itemData['condition_id'] = $condition->id;
 
             $item = Item::create($itemData);
-
             $item->categories()->attach($categories);
         }
     }

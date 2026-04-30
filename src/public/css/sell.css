@@ -1,10 +1,15 @@
 /* セクション見出し */
+.form__label {
+    font-size: 16px;
+    margin-top: 20px;
+}
+
 .sell__section {
     margin-top: 30px;
 }
 
 .sell__section-title {
-    font-size: 18px;
+    font-size: 20px;
     border-bottom: 1px solid #ccc;
     padding-bottom: 8px;
     margin-bottom: 20px;
@@ -36,7 +41,7 @@
     gap: 10px;
 }
 
-.sell__category input {
+.sell__category-input {
     display: none;
 }
 
@@ -51,7 +56,7 @@
 }
 
 /* 選択状態 */
-.sell__category input:checked+.sell__category-tag {
+.sell__category-input:checked+.sell__category-tag {
     background-color: #ff5555;
     color: #fff;
 }

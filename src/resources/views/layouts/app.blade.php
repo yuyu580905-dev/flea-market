@@ -16,8 +16,37 @@
 <body>
 
     <header class="header">
-        <div class="header__inner">
-            <a class="header__logo" href="/">COACHTECH</a>
+        <div class="header__inner header__inner--between">
+
+            <!-- ロゴ -->
+            <a class="header__logo" href="/">
+                <img class="header__logo-image" src="{{ asset('images/logo.png') }}" alt="COACHTECH">
+            </a>
+
+            <!-- 検索 -->
+            <form class="header__search" action="/" method="GET">
+                <input type="text" name="keyword" class="header__search-input" placeholder="なにをお探しですか？"
+                    value="{{ request('keyword') }}">
+            </form>
+
+            <!-- ナビ -->
+            <nav class="header__nav">
+                @auth
+                    <!-- ログアウト -->
+                    <form action="/logout" method="POST" class="header__logout-form">
+                        @csrf
+                        <button type="submit" class="header__link">ログアウト</button>
+                    </form>
+
+                    <a href="/mypage" class="header__link">マイページ</a>
+                    <a href="/sell" class="header__button">出品</a>
+                @endauth
+
+                @guest
+                    <a href="/login" class="header__link">ログイン</a>
+                @endguest
+            </nav>
+
         </div>
     </header>
 

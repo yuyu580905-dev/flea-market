@@ -13,9 +13,7 @@
 
         <div class="form">
 
-            <h1 class="form__heading">
-                商品の出品
-            </h1>
+            <h1 class="form__heading">商品の出品</h1>
 
             <form method="POST" action="/sell" enctype="multipart/form-data" novalidate>
                 @csrf
@@ -41,8 +39,11 @@
                     <div class="sell__categories">
                         @foreach($categories as $category)
                             <label class="sell__category">
-                                <input type="checkbox" name="categories[]" value="{{ $category->id }}">
-                                <span class="sell__category-tag">{{ $category->name }}</span>
+                                <input type="checkbox" name="categories[]" value="{{ $category->id }}"
+                                    class="sell__category-input">
+                                <span class="sell__category-tag">
+                                    {{ $category->name }}
+                                </span>
                             </label>
                         @endforeach
                     </div>

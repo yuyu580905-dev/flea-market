@@ -13,27 +13,24 @@
 
         <div class="form">
 
-            <h1 class="form__heading">
-                プロフィール設定
-            </h1>
+            <h1 class="form__heading">プロフィール設定</h1>
 
             <form method="POST" action="/mypage/profile" enctype="multipart/form-data" novalidate>
                 @csrf
 
                 {{-- 画像 --}}
                 <div class="profile__image-area">
-
                     <div class="profile__image">
                         @if (!empty($user->profile_image))
-                            <img src="{{ asset('storage/' . $user->profile_image) }}">
+                            <img src="{{ asset('storage/' . $user->profile_image) }}" class="profile__image-element"
+                                alt="プロフィール画像">
                         @endif
                     </div>
 
                     <label class="profile__image-button">
                         画像を選択する
-                        <input type="file" name="profile_image" hidden>
+                        <input type="file" name="profile_image" class="profile__file-input" hidden>
                     </label>
-
                 </div>
 
                 {{-- ユーザー名 --}}

@@ -8,49 +8,48 @@
 .items__tabs {
     display: flex;
     gap: 40px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #000;
+    margin-bottom: 30px;
+    padding-left: 40px;
     padding-bottom: 10px;
-    margin-bottom: 40px;
 }
 
-.items__tabs a {
+.items__tab {
+    padding-bottom: 10px;
     text-decoration: none;
     font-weight: bold;
-    color: #888;
+    color: #555;
 }
 
-/* マイリストを赤に（仮で固定） */
-.items__tabs a[href*="mylist"] {
+/* アクティブ状態 */
+.items__tab--active {
     color: #f00;
 }
 
 /* 商品一覧 */
 .items__grid {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 40px;
 }
 
 /* 商品カード */
-.items__grid a {
+.items__card {
     text-decoration: none;
     color: #000;
 }
 
 /* 画像 */
-.items__grid img {
-    width: 240px;
-    height: 240px;
+.items__image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
     background-color: #ccc;
-    display: block;
-}
-
-/* 画像ラッパー（Sold用） */
-.items__grid div {
-    position: relative;
 }
 
 /* Soldラベル */
-.items__grid span {
+.items__sold {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -61,7 +60,7 @@
 }
 
 /* 商品名 */
-.items__grid p {
+.items__name {
     margin-top: 10px;
     font-size: 14px;
 }

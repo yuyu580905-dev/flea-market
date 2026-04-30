@@ -52,8 +52,9 @@
                 </div>
 
                 <p class="purchase__address">
-                    〒{{ $user->postcode }}<br>
-                    {{ $user->address }} {{ $user->building }}
+                    〒{{ optional(auth()->user()->profile)->postcode }}<br>
+                    {{ optional(auth()->user()->profile)->address }}
+                    {{ optional(auth()->user()->profile)->building }}
                 </p>
 
             </div>

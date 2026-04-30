@@ -12,33 +12,31 @@
 
         {{-- タブ --}}
         <div class="items__tabs">
-            <a href="/?tab=all">おすすめ</a>
-            <a href="/?tab=mylist">マイリスト</a>
+            <a href="/?tab=all" class="items__tab {{ request('tab') !== 'mylist' ? 'items__tab--active' : '' }}">
+                おすすめ
+            </a>
+
+            <a href="/?tab=mylist" class="items__tab {{ request('tab') === 'mylist' ? 'items__tab--active' : '' }}">
+                マイリスト
+            </a>
         </div>
 
         {{-- 商品一覧 --}}
         <div class="items__grid">
-
             @foreach ($items as $item)
-
-                <a href="/items/{{ $item->id }}">
-
-                    <div>
-                        <img src="{{ asset('storage/items/' . $item->image) }}">
+                <a href="/item/{{ $item->id }}" class="items__card">
+                    <div class="items__image-wrapper">
+                        <img src="{{ asset('storage/items/' . $item->image) }}" class="items__image" alt="{{ $item->name }}">
 
                         @if ($item->is_sold)
-                            <span>Sold</span>
+                            <span class="items__sold">Sold</span>
                         @endif
                     </div>
 
-                    <p>{{ $item->name }}</p>
-
+                    <p class="items__name">{{ $item->name }}</p>
                 </a>
-
             @endforeach
-
         </div>
 
     </div>
-
 @endsection

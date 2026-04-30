@@ -1,14 +1,17 @@
 /* 全体 */
 .mypage {
-    padding: 40px 60px;
+    width: 90%;
+    margin: 40px auto;
 }
 
 /* ヘッダー */
 .mypage__header {
+    max-width: 900px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 40px;
+    margin: 0 auto 40px;
 }
 
 .mypage__profile {
@@ -40,16 +43,18 @@
 /* タブ */
 .mypage__tabs {
     display: flex;
-    gap: 30px;
+    gap: 40px;
     border-bottom: 1px solid #000;
     margin-bottom: 30px;
+    padding-left: 60px;
+    padding-bottom: 10px;
 }
 
 .mypage__tab {
     padding-bottom: 10px;
     text-decoration: none;
-    color: #555;
     font-weight: bold;
+    color: #555;
 }
 
 .mypage__tab--active {
@@ -59,19 +64,17 @@
 /* グリッド */
 .mypage__grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 40px;
 }
-
-/* カード */
-.mypage__card {}
 
 /* 画像 */
 .mypage__image {
     width: 100%;
+    height: auto;
     aspect-ratio: 1 / 1;
+    object-fit: cover;
     background-color: #ccc;
-    margin-bottom: 10px;
 }
 
 /* 商品名 */
