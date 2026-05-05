@@ -8,8 +8,8 @@
 
 /* 左：画像 */
 .item-detail__image-element {
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
     background: #ccc;
     display: block;
 }

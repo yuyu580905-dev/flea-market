@@ -16,19 +16,21 @@ use App\Http\Controllers\PurchaseController;
 |
 */
 
-Route::middleware(['auth', 'profile.complete'])->group(function () {
-    Route::get('/', [ItemController::class, 'index']);
-    Route::get('/item/{item}', [ItemController::class, 'show']);
-    Route::get('/purchase/{item}', [PurchaseController::class, 'create']);
-});
+Route::get('/', [ItemController::class, 'index']);
+Route::get('/item/{item}', [ItemController::class, 'show']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/mypage/profile', [ProfileController::class, 'edit']);
     Route::post('/mypage/profile', [ProfileController::class, 'update']);
 });
 
-Route::get('/', [ItemController::class, 'index']);
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/purchase/{item}', [PurchaseController::class, 'create']);
+});
 
+Route::middleware(['auth', 'profile.complete'])->group(function () {
+    Route::get('/purchase/{item}', [PurchaseController::class, 'create']);
+});
 
 //表示確認のため
 Route::view('/purchase/address/1', 'purchases.address', [
@@ -68,3 +70,6 @@ Route::view('/sell', 'sell', [
         (object)['id' => 5, 'name' => 'その他'],
     ]
 ]);
+
+// パスは任意ですが、分かりやすく /verify としています
+Route::view('/verify', 'auth.verify');

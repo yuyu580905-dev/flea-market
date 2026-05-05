@@ -18,6 +18,15 @@ DB_PORT=3306
 DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
+
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=ce65b9828217e5
+MAIL_PASSWORD=3a4d6b35f4a058
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=test@example.com
+MAIL_FROM_NAME="${APP_NAME}"
 ```
 5. アプリケーションキーの作成
 ``` bash
@@ -38,6 +47,13 @@ php artisan storage:link
 ``` bash
 php artisan db:seed
 ```
+
+## メール認証について
+本アプリではMailtrapを使用しています。
+1. Mailtrapに登録
+2. Sandboxを作成
+3. SMTP情報を.envに設定(Laravel環境構築 4.で設定済み)
+4. `php artisan config:clear`
 
 ## 使用技術(実行環境)
 - PHP8.1

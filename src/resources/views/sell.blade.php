@@ -50,7 +50,8 @@
 
                     {{-- 状態 --}}
                     <label class="form__label">商品の状態</label>
-                    <select name="condition" class="form__input">
+                    <select name="condition" class="form__input" required>
+                        <option value="" disabled selected>選択してください</option>
                         <option value="良好">良好</option>
                         <option value="目立った傷や汚れなし">目立った傷や汚れなし</option>
                         <option value="やや傷や汚れあり">やや傷や汚れあり</option>
@@ -74,7 +75,7 @@
                     <label class="form__label">販売価格</label>
                     <div class="sell__price-box">
                         <span class="sell__price-yen">¥</span>
-                        <input type="number" name="price" class="form__input sell__price-input">
+                        <input type="number" name="price" min="0" class="sell__price-input">
                     </div>
                 </div>
 

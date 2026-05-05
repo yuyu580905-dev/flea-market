@@ -1,5 +1,22 @@
+/* ページ全体を中央配置 */
+.verify {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* verifyページだけ横幅を広げる */
+.verify .form {
+    max-width: 700px;
+    width: 100%;
+    transform: translateY(-60px);
+}
+
 /* メッセージ */
 .verify__message {
+    max-width: 600px;
+    margin: 0 auto 40px;
     text-align: center;
     font-size: 18px;
     line-height: 1.8;
@@ -20,6 +37,7 @@
     text-decoration: none;
     color: #000;
     font-weight: bold;
+    border: 1px solid #000;
 }
 
 /* 再送ボタン（リンク風） */

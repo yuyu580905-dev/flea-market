@@ -1,7 +1,7 @@
 /* 全体 */
 .mypage {
     width: 90%;
-    margin: 40px auto;
+    margin: 0 auto;
 }
 
 /* ヘッダー */
@@ -45,9 +45,11 @@
     display: flex;
     gap: 40px;
     border-bottom: 1px solid #000;
-    margin-bottom: 30px;
-    padding-left: 60px;
     padding-bottom: 10px;
+    margin-bottom: 40px;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding-left: 15%;
 }
 
 .mypage__tab {
