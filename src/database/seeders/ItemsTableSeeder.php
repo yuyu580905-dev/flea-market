@@ -25,7 +25,8 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'スタイリッシュなデザインのメンズ腕時計',
                 'image' => 'clock.jpg',
                 'condition' => '良好',
-                'categories' => [1, 5]
+                'categories' => [1, 5],
+                'is_sold' => true,
             ],
 
             [
@@ -36,7 +37,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => '高速で信頼性の高いハードディスク',
                 'image' => 'hdd.jpg',
                 'condition' => '目立った傷や汚れなし',
-                'categories' => [2]
+                'categories' => [2],
             ],
 
             [
@@ -47,7 +48,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => '新鮮な玉ねぎ3束のセット',
                 'image' => 'onion.jpg',
                 'condition' => 'やや傷や汚れあり',
-                'categories' => [10]
+                'categories' => [10],
             ],
 
             [
@@ -58,7 +59,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'クラシックなデザインの革靴',
                 'image' => 'shoes.jpg',
                 'condition' => '状態が悪い',
-                'categories' => [1, 5]
+                'categories' => [1, 5],
             ],
 
             [
@@ -69,7 +70,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => '高性能なノートパソコン',
                 'image' => 'laptop.jpg',
                 'condition' => '良好',
-                'categories' => [2]
+                'categories' => [2],
             ],
 
             [
@@ -80,7 +81,8 @@ class ItemsTableSeeder extends Seeder
                 'description' => '高音質のレコーディング用マイク',
                 'image' => 'mic.jpg',
                 'condition' => '目立った傷や汚れなし',
-                'categories' => [2]
+                'categories' => [2],
+                'is_sold' => true,
             ],
 
             [
@@ -91,7 +93,7 @@ class ItemsTableSeeder extends Seeder
                 'description' => 'おしゃれなショルダーバッグ',
                 'image' => 'bag.jpg',
                 'condition' => 'やや傷や汚れあり',
-                'categories' => [1, 4]
+                'categories' => [1, 4],
             ],
 
             [
@@ -102,7 +104,8 @@ class ItemsTableSeeder extends Seeder
                 'description' => '使いやすいタンブラー',
                 'image' => 'tumbler.jpg',
                 'condition' => '状態が悪い',
-                'categories' => [10]
+                'categories' => [10],
+                'is_sold' => true,
             ],
 
             [
@@ -113,7 +116,8 @@ class ItemsTableSeeder extends Seeder
                 'description' => '手動のコーヒーミル',
                 'image' => 'grinder.jpg',
                 'condition' => '良好',
-                'categories' => [10]
+                'categories' => [10],
+                'is_sold' => true,
             ],
 
             [
@@ -124,11 +128,10 @@ class ItemsTableSeeder extends Seeder
                 'description' => '便利なメイクアップセット',
                 'image' => 'makeup.jpg',
                 'condition' => '目立った傷や汚れなし',
-                'categories' => [6]
+                'categories' => [6],
             ],
 
         ];
-
 
         foreach ($items as $itemData) {
 

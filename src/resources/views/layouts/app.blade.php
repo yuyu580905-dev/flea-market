@@ -25,8 +25,8 @@
 
             <!-- 検索 -->
             <form class="header__search" action="/" method="GET">
-                <input type="text" name="keyword" class="header__search-input" placeholder="なにをお探しですか？"
-                    value="{{ request('keyword') }}">
+                <input class="header__search-input" type="text" name="keyword" value="{{ request('keyword') }}"
+                    placeholder="なにをお探しですか？">
             </form>
 
             <!-- ナビ -->

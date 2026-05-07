@@ -67,3 +67,10 @@ php artisan db:seed
 - 開発環境：http://localhost/
 - phpMyAdmin:：http://localhost:8080/
 
+## テストアカウントについて
+以下のアカウントでログインできます。（※テストアカウントはシーディング実行後に利用できます。）
+| 名前 | メールアドレス | パスワード |
+|---|---|---|
+| テストユーザー1 | user1@example.com | password123 |
+| テストユーザー2 | user2@example.com | password123 |
+| テストユーザー3 | user3@example.com | password123 |

@@ -10,9 +10,6 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Http\Requests\LoginRequest as FortifyLoginRequest;
 use App\Http\Requests\LoginRequest;
-use Laravel\Fortify\Http\Requests\RegisterRequest as FortifyRegisterRequest;
-use App\Http\Requests\RegisterRequest;
-
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -30,6 +27,10 @@ class FortifyServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Fortify::createUsersUsing(CreateNewUser::class);
+
+        Fortify::verifyEmailView(function () {
+            return view('auth.verify');
+        });
 
         Fortify::registerView(function () {
             return view('auth.register');

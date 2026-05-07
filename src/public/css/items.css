@@ -51,15 +51,42 @@
     background-color: #ccc;
 }
 
-/* Soldラベル */
+/* 画像ラッパーを基準にする */
+.items__image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+/* 三角のベース */
 .items__sold {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    background: #f00;
+    top: 0;
+    left: 0;
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+}
+
+/* 三角本体 */
+.items__sold::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top: 90px solid #f00;
+    border-right: 90px solid transparent;
+}
+
+/* Soldテキスト */
+.items__sold::after {
+    content: "SOLD";
+    position: absolute;
+    top: 18px;
+    left: 5px;
+    transform: rotate(-45deg);
     color: #fff;
-    font-size: 12px;
-    padding: 4px 8px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 /* 商品名 */

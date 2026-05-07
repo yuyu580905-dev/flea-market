@@ -19,16 +19,13 @@ use App\Http\Controllers\PurchaseController;
 Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item}', [ItemController::class, 'show']);
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/mypage/profile', [ProfileController::class, 'edit']);
     Route::post('/mypage/profile', [ProfileController::class, 'update']);
-});
-
-Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/purchase/{item}', [PurchaseController::class, 'create']);
 });
 
-Route::middleware(['auth', 'profile.complete'])->group(function () {
+Route::middleware(['auth', 'verified', 'profile.complete'])->group(function () {
     Route::get('/purchase/{item}', [PurchaseController::class, 'create']);
 });
 

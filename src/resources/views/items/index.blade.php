@@ -12,11 +12,13 @@
 
         {{-- タブ --}}
         <div class="items__tabs">
-            <a href="/?tab=all" class="items__tab {{ request('tab') !== 'mylist' ? 'items__tab--active' : '' }}">
+            <a href="/?tab=all&keyword={{ request('keyword') }}"
+                class="items__tab {{ request('tab') !== 'mylist' ? 'items__tab--active' : '' }}">
                 おすすめ
             </a>
 
-            <a href="/?tab=mylist" class="items__tab {{ request('tab') === 'mylist' ? 'items__tab--active' : '' }}">
+            <a href="/?tab=mylist&keyword={{ request('keyword') }}"
+                class="items__tab {{ request('tab') === 'mylist' ? 'items__tab--active' : '' }}">
                 マイリスト
             </a>
         </div>
