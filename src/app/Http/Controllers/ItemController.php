@@ -50,7 +50,9 @@ class ItemController extends Controller
         $item->load([
             'categories',
             'comments.user',
+            'comments.user.profile',
             'condition',
+            'likedUsers',
         ]);
 
         return view('items.show', compact('item'));

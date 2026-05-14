@@ -10,7 +10,7 @@ class ProfileController extends Controller
 {
     public function edit()
     {
-        $user = Auth::user();
+        $user = Auth::user()->load('profile');
         return view('mypage.profile', compact('user'));
     }
     public function update(Request $request)
@@ -26,6 +26,6 @@ class ProfileController extends Controller
             ]
         );
 
-        return redirect('/')->with('success', 'プロフィールを保存しました');
+        return redirect('/');
     }
 }

@@ -10,6 +10,12 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Http\Requests\LoginRequest as FortifyLoginRequest;
 use App\Http\Requests\LoginRequest;
+use Laravel\Fortify\Contracts\VerifyEmailResponse as VerifyEmailResponseContract;
+use App\Http\Responses\VerifyEmailResponse;
+use Laravel\Fortify\Contracts\RegisterResponse as RegisterResponseContract;
+use App\Http\Responses\RegisterResponse;
+use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+use App\Http\Responses\LoginResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -18,7 +24,9 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(VerifyEmailResponseContract::class, VerifyEmailResponse::class);
+        $this->app->singleton(RegisterResponseContract::class, RegisterResponse::class);
+        $this->app->singleton(LoginResponseContract::class, LoginResponse::class);
     }
 
     /**

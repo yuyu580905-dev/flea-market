@@ -40,6 +40,13 @@ class Item extends Model
     }
     public function likedUsers()
     {
-        return $this->belongsToMany(User::class, 'likes');
+        return $this->belongsToMany(User::class, 'likes')
+            ->withTimestamps();
+    }
+    public function isLikedBy($user)
+    {
+        return $this->likedUsers()
+            ->where('user_id', $user->id)
+            ->exists();
     }
 }

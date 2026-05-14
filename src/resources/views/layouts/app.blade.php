@@ -31,20 +31,18 @@
 
             <!-- ナビ -->
             <nav class="header__nav">
+
                 @auth
-                    <!-- ログアウト -->
                     <form action="/logout" method="POST" class="header__logout-form">
                         @csrf
                         <button type="submit" class="header__link">ログアウト</button>
                     </form>
-
-                    <a href="/mypage" class="header__link">マイページ</a>
-                    <a href="/sell" class="header__button">出品</a>
+                @else
+                    <a href="/login" class="header__link">ログイン</a>
                 @endauth
 
-                @guest
-                    <a href="/login" class="header__link">ログイン</a>
-                @endguest
+                <a href="/mypage" class="header__link">マイページ</a>
+                <a href="/sell" class="header__button">出品</a>
             </nav>
 
         </div>

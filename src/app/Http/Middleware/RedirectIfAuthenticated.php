@@ -22,7 +22,15 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
+            // ログイン状態であるかチェック
             if (Auth::guard($guard)->check()) {
+
+                // 1. ログイン済み ＆ メール未認証の場合、メール認証待ち画面へ
+                if ($request->user($guard) && ! $request->user($guard)->hasVerifiedEmail()) {
+                    return redirect('/email/verify');
+                }
+
+                // 2. ログイン済み ＆ 認証完了済みの場合は、本来のトップ画面（/）へ
                 return redirect(RouteServiceProvider::HOME);
             }
         }

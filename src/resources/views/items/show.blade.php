@@ -30,16 +30,33 @@
                 ¥{{ number_format($item->price) }}（税込）
             </p>
 
-            {{-- いいね・コメント --}}
+            {{-- いいね・コメントのアイコン --}}
             <div class="item-detail__meta">
                 <div class="item-detail__meta-item">
-                    <img src="{{ asset('images/icon-heart-default.png') }}" class="item-detail__icon">
-                    <span class="item-detail__meta-count">{{ $item->likes_count ?? 0 }}</span>
+                    <form action="/item/{{ $item->id }}/like" method="POST">
+                        @csrf
+                        <button type="submit" class="item-detail__like-button">
+                            @auth
+                                @if ($item->isLikedBy(Auth::user()))
+                                    <img src="{{ asset('images/icon-heart-pink.png') }}" class="item-detail__icon">
+                                @else
+                                    <img src="{{ asset('images/icon-heart-default.png') }}" class="item-detail__icon">
+                                @endif
+                            @else
+                                <img src="{{ asset('images/icon-heart-default.png') }}" class="item-detail__icon">
+                            @endauth
+                        </button>
+                    </form>
+
+                    <span class="item-detail__meta-count">
+                        {{ $item->likedUsers->count() }}
+                    </span>
                 </div>
 
                 <div class="item-detail__meta-item">
                     <img src="{{ asset('images/icon-comment.png') }}" class="item-detail__icon">
-                    <span class="item-detail__meta-count">{{ $item->comments_count ?? 0 }}</span>
+                    <span class="item-detail__meta-count">
+                        {{ $item->comments->count() }}</span>
                 </div>
             </div>
 
@@ -81,14 +98,28 @@
             {{-- コメント --}}
             <div class="item-detail__section">
                 <h2 class="item-detail__heading">コメント（{{ $item->comments->count() }}）</h2>
+
                 @foreach ($item->comments as $comment)
                     <div class="item-detail__comment">
                         <div class="item-detail__comment-user">
-                            {{ $comment->user->name }}
+                            <div class="item-detail__comment-user-image">
+
+                                @if ($comment->user->profile && $comment->user->profile->profile_image)
+                                    <img src="{{ asset('storage/profile_images/' . $comment->user->profile->profile_image) }}"
+                                        alt="{{ $comment->user->name }}" class="item-detail__comment-user-image-element">
+                                @else
+                                    <div class="item-detail__comment-user-placeholder"></div>
+                                @endif
+
+                            </div>
+
+                            <div class="item-detail__comment-user-name">
+                                {{ $comment->user->name }}
+                            </div>
                         </div>
 
                         <div class="item-detail__comment-body">
-                            {{ $comment->content }}
+                            {{ $comment->comment }}
                         </div>
                     </div>
                 @endforeach
@@ -97,12 +128,18 @@
             {{-- コメント投稿 --}}
             <div class="item-detail__section">
                 <h2 class="item-detail__heading">商品へのコメント</h2>
-                <form method="POST" action="/comment">
+                <form action="/comment/{{ $item->id }}" method="POST">
                     @csrf
 
-                    <textarea name="content" class="item-detail__textarea"></textarea>
+                    <textarea name="comment" class="item-detail__textarea">{{ old('comment') }}</textarea>
 
-                    <button class="item-detail__button">
+                    @error('comment')
+                        <div class="form__error">
+                            {{ $message }}
+                        </div>
+                    @enderror
+
+                    <button type="submit" class="item-detail__button">
                         コメントを送信する
                     </button>
                 </form>

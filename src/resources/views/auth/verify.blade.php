@@ -20,7 +20,7 @@
 
             {{-- 認証ボタン --}}
             <div class="form__group verify__center">
-                <a href="#" class="verify__button">
+                <a href="https://mailtrap.io/home" class="verify__button">
                     認証はこちらから
                 </a>
             </div>
