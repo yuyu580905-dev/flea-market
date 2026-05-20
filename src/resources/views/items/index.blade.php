@@ -28,7 +28,7 @@
             @foreach ($items as $item)
                 <a href="/item/{{ $item->id }}" class="items__card">
                     <div class="items__image-wrapper">
-                        <img src="{{ asset('storage/items/' . $item->image) }}" class="items__image" alt="{{ $item->name }}">
+                        <img src="{{ asset('storage/items/' . $item->image) }}" alt="{{ $item->name }}" class="items__image">
 
                         @if ($item->is_sold)
                             <span class="items__sold">Sold</span>

@@ -21,16 +21,17 @@
                 {{-- 画像 --}}
                 <div class="profile__image-area">
                     <div class="profile__image">
-                        @if (!empty($user->profile_image))
-                            <img src="{{ asset('storage/' . $user->profile_image) }}" class="profile__image-element"
-                                alt="プロフィール画像">
+                        @if (!empty($user->profile->profile_image))
+                            <img src="{{ asset('storage/profiles/' . $user->profile->profile_image) }}"
+                                class="profile__image-element" alt="プロフィール画像">
                         @endif
                     </div>
 
-                    <label class="profile__image-button">
+                    <label for="profile_image" class="profile__image-button">
                         画像を選択する
-                        <input type="file" name="profile_image" class="profile__file-input" hidden>
                     </label>
+
+                    <input id="profile_image" type="file" name="profile_image" class="profile__file-input">
                 </div>
 
                 {{-- ユーザー名 --}}
@@ -46,7 +47,7 @@
                 <div class="form__group">
                     <label class="form__label">郵便番号</label>
                     <input class="form__input" type="text" name="postcode"
-                        value="{{ old('postcode', $user->postcode ?? '') }}">
+                        value="{{ old('postcode', $user->profile->postcode ?? '') }}">
                     @error('postcode')
                         <div class="form__error">{{ $message }}</div>
                     @enderror
@@ -56,7 +57,7 @@
                 <div class="form__group">
                     <label class="form__label">住所</label>
                     <input class="form__input" type="text" name="address"
-                        value="{{ old('address', $user->address ?? '') }}">
+                        value="{{ old('address', $user->profile->address ?? '') }}">
                     @error('address')
                         <div class="form__error">{{ $message }}</div>
                     @enderror
@@ -66,10 +67,7 @@
                 <div class="form__group">
                     <label class="form__label">建物名</label>
                     <input class="form__input" type="text" name="building"
-                        value="{{ old('building', $user->building ?? '') }}">
-                    @error('building')
-                        <div class="form__error">{{ $message }}</div>
-                    @enderror
+                        value="{{ old('building', $user->profile->building ?? '') }}">
                 </div>
 
                 <button class="form__button">

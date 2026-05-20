@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Condition;
 use App\Models\Comment;
+use App\Models\Purchase;
 
 class Item extends Model
 {
@@ -48,5 +49,9 @@ class Item extends Model
         return $this->likedUsers()
             ->where('user_id', $user->id)
             ->exists();
+    }
+    public function purchase()
+    {
+        return $this->hasOne(Purchase::class);
     }
 }

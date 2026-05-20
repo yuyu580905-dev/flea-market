@@ -2,7 +2,11 @@
 .purchase {
     width: 90%;
     margin: 40px auto;
+}
+
+.purchase__form {
     display: flex;
+    width: 100%;
     gap: 60px;
 }
 
@@ -15,7 +19,9 @@
 .purchase__item {
     display: flex;
     gap: 20px;
-    align-items: center;
+    align-items: flex-start;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #000;
 }
 
 .purchase__image {
@@ -25,27 +31,32 @@
 }
 
 .purchase__name {
-    font-size: 18px;
+    font-size: 28px;
     font-weight: bold;
+    margin: 0;
 }
 
 .purchase__price {
-    margin-top: 5px;
+    font-size: 24px;
+    margin-top: 10px;
 }
 
 /* セクション */
 .purchase__section {
-    margin: 30px 0;
+    padding: 30px 20px;
+    border-bottom: 1px solid #000;
 }
 
 .purchase__label {
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    padding-left: 20px;
 }
 
 /* セレクト */
 .purchase__select {
     padding: 5px;
+    margin-left: 60px;
 }
 
 /* 配送先 */
@@ -53,16 +64,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-right: 40px;
 }
 
 .purchase__change {
-    color: #00f;
+    color: #0044ff;
     text-decoration: none;
     font-size: 14px;
 }
 
 .purchase__address {
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-left: 60px;
+    line-height: 1.8;
+    font-weight: bold;
 }
 
 /* 右 */
@@ -72,22 +87,40 @@
 
 /* サマリー */
 .purchase__summary {
-    border: 1px solid #ccc;
-    padding: 20px;
+    border: 1px solid #000;
 }
 
 .purchase__row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
+    align-items: center;
+    padding: 25px 40px;
+    border-bottom: 1px solid #000;
+}
+
+.purchase__row:last-child {
+    border-bottom: none;
 }
 
 /* ボタン */
 .purchase__button {
     width: 100%;
-    margin-top: 20px;
-    background: #ff5a5a;
+    background: #ff5555;
     color: #fff;
-    padding: 10px;
     border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 52px;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+/* エラーメッセージ */
+.purchase__error {
+    color: #ff5555;
+    font-size: 14px;
+    margin-top: 8px;
+    margin-left: 60px;
 }

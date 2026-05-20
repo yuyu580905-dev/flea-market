@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Item;
 use App\Models\Profile;
 use App\Models\Comment;
+use App\Models\Purchase;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -61,5 +62,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Item::class, 'likes')
             ->withTimestamps();
+    }
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
     }
 }

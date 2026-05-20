@@ -21,10 +21,17 @@
 }
 
 .mypage__avatar {
-    width: 80px;
-    height: 80px;
-    background-color: #ccc;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
+    overflow: hidden;
+    background: #ccc;
+}
+
+.mypage__avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .mypage__username {
@@ -38,6 +45,8 @@
     padding: 10px 20px;
     border-radius: 8px;
     text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 /* タブ */
@@ -79,7 +88,14 @@
     background-color: #ccc;
 }
 
+.mypage__image-tag {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 /* 商品名 */
 .mypage__item-name {
+    margin-top: 10px;
     font-size: 14px;
 }

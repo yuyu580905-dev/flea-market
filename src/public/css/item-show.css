@@ -21,7 +21,7 @@
 
 /* 商品名 */
 .item-detail__name {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: bold;
 }
 
@@ -33,7 +33,7 @@
 
 /* 価格 */
 .item-detail__price {
-    font-size: 20px;
+    font-size: 26px;
     margin: 10px 0;
 }
 
@@ -76,14 +76,22 @@
 .item-detail__button {
     display: block;
     width: 100%;
-    background: #ff5a5a;
+    background: #ff5555;
     color: #fff;
     text-align: center;
-    padding: 10px;
-    margin: 20px 0;
     text-decoration: none;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    padding: 12px 0;
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+.item-detail__button:hover {
+    opacity: 0.9;
 }
 
 /* セクション */
@@ -92,7 +100,7 @@
 }
 
 .item-detail__heading {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: bold;
     margin-bottom: 15px;
 }
@@ -105,12 +113,18 @@
 
 .item-detail__label {
     min-width: 120px;
-    font-weight: bold;
     font-size: 16px;
+    font-weight: bold;
 }
 
 .item-detail__value {
     font-size: 16px;
+}
+
+.item-detail__subheading {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 /* カテゴリ */
@@ -175,11 +189,10 @@
 .item-detail__textarea {
     width: 100%;
     height: 120px;
-    margin-top: 10px;
 }
 
 /* エラーメッセージ */
-.form__error {
+.comment__error {
     color: #ff5555;
     font-size: 14px;
     margin-top: 8px;

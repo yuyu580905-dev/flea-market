@@ -105,7 +105,7 @@
                             <div class="item-detail__comment-user-image">
 
                                 @if ($comment->user->profile && $comment->user->profile->profile_image)
-                                    <img src="{{ asset('storage/profile_images/' . $comment->user->profile->profile_image) }}"
+                                    <img src="{{ asset('storage/profiles/' . $comment->user->profile->profile_image) }}"
                                         alt="{{ $comment->user->name }}" class="item-detail__comment-user-image-element">
                                 @else
                                     <div class="item-detail__comment-user-placeholder"></div>
@@ -127,14 +127,14 @@
 
             {{-- コメント投稿 --}}
             <div class="item-detail__section">
-                <h2 class="item-detail__heading">商品へのコメント</h2>
+                <h3 class="item-detail__subheading">商品へのコメント</h3>
                 <form action="/comment/{{ $item->id }}" method="POST">
                     @csrf
 
                     <textarea name="comment" class="item-detail__textarea">{{ old('comment') }}</textarea>
 
                     @error('comment')
-                        <div class="form__error">
+                        <div class="comment__error">
                             {{ $message }}
                         </div>
                     @enderror

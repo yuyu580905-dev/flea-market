@@ -10,9 +10,10 @@
 .profile__image {
     width: 120px;
     height: 120px;
-    background: #ccc;
     border-radius: 50%;
     overflow: hidden;
+    background: #ccc;
+    flex-shrink: 0;
 }
 
 .profile__image-element {
@@ -29,4 +30,10 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
+    font-weight: bold;
+}
+
+/* ブラウザ標準input[type="file"]を非表示にする */
+.profile__file-input {
+    display: none;
 }

@@ -18,7 +18,6 @@ class ItemController extends Controller
             if (!Auth::check()) {
                 $items = collect();
             } else {
-                /** @var \App\Models\User $user */
                 $user = Auth::user();
                 $query = $user
                     ->likes()

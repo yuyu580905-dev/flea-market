@@ -13,7 +13,12 @@
         {{-- プロフィール --}}
         <div class="mypage__header">
             <div class="mypage__profile">
-                <div class="mypage__avatar"></div>
+                <div class="mypage__avatar">
+                    @if (!empty($user->profile->profile_image))
+                        <img src="{{ asset('storage/profiles/' . $user->profile->profile_image) }}" class="mypage__avatar-image"
+                            alt="プロフィール画像">
+                    @endif
+                </div>
                 <h1 class="mypage__username">{{ $user->name }}</h1>
             </div>
 
@@ -37,13 +42,16 @@
         <div class="mypage__grid">
             @foreach($items as $item)
                 <div class="mypage__card">
-                    <div class="mypage__image">
-                        {{-- 画像 --}}
 
+                    <div class="mypage__image">
+                        <img src="{{ asset('storage/items/' . $item->image) }}" alt="{{ $item->name }}"
+                            class="mypage__image-tag">
                     </div>
+
                     <p class="mypage__item-name">
                         {{ $item->name }}
                     </p>
+
                 </div>
             @endforeach
         </div>
