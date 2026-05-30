@@ -27,12 +27,15 @@
         <div class="items__grid">
             @foreach ($items as $item)
                 <a href="/item/{{ $item->id }}" class="items__card">
-                    <div class="items__image-wrapper">
-                        <img src="{{ asset('storage/items/' . $item->image) }}" alt="{{ $item->name }}" class="items__image">
 
+                    <div class="items__image-wrapper">
                         @if ($item->is_sold)
-                            <span class="items__sold">Sold</span>
+                            <div class="items__sold">SOLD</div>
                         @endif
+
+                        <div class="items__image">
+                            <img src="{{ $item->image_url }}" alt="{{ $item->name }}" class="items__image-tag">
+                        </div>
                     </div>
 
                     <p class="items__name">{{ $item->name }}</p>

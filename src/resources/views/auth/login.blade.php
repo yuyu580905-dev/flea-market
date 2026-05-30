@@ -35,11 +35,11 @@
                 </div>
 
                 <div class="form__group">
-                    <label class="form__label">
+                    <label class="form__label" for="password">
                         パスワード
                     </label>
 
-                    <input class="form__input" type="password" name="password">
+                    <input class="form__input" type="password" name="password" id="password">
 
                     @error('password')
                         <div class="form__error">

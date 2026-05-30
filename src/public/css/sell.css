@@ -52,7 +52,7 @@
     padding: 5px 12px;
     border-radius: 20px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 /* 選択状態 */
@@ -94,7 +94,7 @@
     font-size: 16px;
 }
 
-/* Chrome, Safari, Edge, Opera 用（スピンボタンを非表示にする） */
+/* Chrome, Safari, Edge, Opera用（スピンボタンを非表示にする） */
 .sell__price-input::-webkit-outer-spin-button,
 .sell__price-input::-webkit-inner-spin-button {
     -webkit-appearance: none;

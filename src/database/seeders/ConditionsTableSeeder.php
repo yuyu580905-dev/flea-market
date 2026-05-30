@@ -15,14 +15,15 @@ class ConditionsTableSeeder extends Seeder
     public function run()
     {
         $conditions = [
-            '良好',
-            '目立った傷や汚れなし',
-            'やや傷や汚れあり',
-            '状態が悪い',
+            1 => '良好',
+            2 => '目立った傷や汚れなし',
+            3 => 'やや傷や汚れあり',
+            4 => '状態が悪い',
         ];
 
-        foreach ($conditions as $name) {
+        foreach ($conditions as $id => $name) {
             Condition::create([
+                'id' => $id,
                 'name' => $name,
             ]);
         }

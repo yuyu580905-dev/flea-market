@@ -21,8 +21,8 @@
                 @csrf
 
                 <div class="form__group">
-                    <label class="form__label">郵便番号</label>
-                    <input class="form__input" type="text" name="postcode"
+                    <label for="postcode" class="form__label">郵便番号</label>
+                    <input class="form__input" type="text" name="postcode" id="postcode"
                         value="{{ old('postcode', $address['postcode']) }}">
                     @error('postcode')
                         <div class="form__error">{{ $message }}</div>
@@ -30,16 +30,17 @@
                 </div>
 
                 <div class="form__group">
-                    <label class="form__label">住所</label>
-                    <input class="form__input" type="text" name="address" value="{{ old('address', $address['address']) }}">
+                    <label for="address" class="form__label">住所</label>
+                    <input class="form__input" type="text" name="address" id="address"
+                        value="{{ old('address', $address['address']) }}">
                     @error('address')
                         <div class="form__error">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="form__group">
-                    <label class="form__label">建物名</label>
-                    <input class="form__input" type="text" name="building"
+                    <label for="building" class="form__label">建物名</label>
+                    <input class="form__input" type="text" name="building" id="building"
                         value="{{ old('building', $address['building']) }}">
                 </div>
 

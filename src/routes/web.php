@@ -7,7 +7,6 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MyPageController;
-use App\Http\Controllers\SellController;
 
 // 公開
 Route::get('/', [ItemController::class, 'index']);
@@ -23,6 +22,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/purchase/address/{item}', [PurchaseController::class, 'editAddress']);
     Route::post('/purchase/address/{item}', [PurchaseController::class, 'updateAddress']);
     Route::get('/purchase/{item}', [PurchaseController::class, 'create']);
-    Route::post('/purchase/{item}', [PurchaseController::class, 'store']);
-    Route::get('/sell', [SellController::class, 'create']);
+    Route::post('/purchase/{item}/checkout', [PurchaseController::class, 'checkout']);
+    Route::get('/purchase/{item}/success', [PurchaseController::class, 'success'])
+        ->name('purchase.success');
+    Route::get('/purchase/{item}/cancel', [PurchaseController::class, 'cancel'])
+        ->name('purchase.cancel');
+    Route::get('/sell', [ItemController::class, 'create']);
+    Route::post('/sell', [ItemController::class, 'store']);
 });

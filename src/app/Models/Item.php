@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Condition;
@@ -23,6 +24,12 @@ class Item extends Model
         'brand',
         'is_sold',
     ];
+    public function getImageUrlAttribute()
+    {
+        return Str::startsWith($this->image, 'http')
+            ? $this->image
+            : asset('storage/' . $this->image);
+    }
     public function user()
     {
         return $this->belongsTo(User::class);

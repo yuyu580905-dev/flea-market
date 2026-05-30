@@ -21,14 +21,15 @@
 
 /* 商品名 */
 .item-detail__name {
+    margin: 0;
     font-size: 32px;
     font-weight: bold;
 }
 
 /* ブランド */
 .item-detail__brand {
-    color: #888;
     margin-top: 5px;
+    margin-bottom: 25px;
 }
 
 /* 価格 */
@@ -37,10 +38,15 @@
     margin: 10px 0;
 }
 
+/* 税込 */
+.item-detail__tax {
+    font-size: 18px;
+}
+
 /* いいね・コメント */
 .item-detail__meta {
     display: flex;
-    gap: 20px;
+    gap: 10px;
     margin-bottom: 20px;
     padding-left: 10px;
 }
@@ -70,6 +76,7 @@
 .item-detail__meta-count {
     margin-top: 4px;
     font-size: 14px;
+    font-weight: bold;
 }
 
 /* ボタン */

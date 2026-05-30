@@ -10,7 +10,7 @@
 
     <div class="purchase">
 
-        <form method="POST" action="/purchase/{{ $item->id }}" class="purchase__form">
+        <form method="POST" action="/purchase/{{ $item->id }}/checkout" class="purchase__form">
             @csrf
 
             {{-- 左側 --}}
@@ -18,7 +18,7 @@
 
                 {{-- 商品情報 --}}
                 <div class="purchase__item">
-                    <img src="{{ asset('storage/items/' . $item->image) }}" class="purchase__image">
+                    <img src="{{ $item->image_url }}" class="purchase__image">
 
                     <div class="purchase__info">
                         <p class="purchase__name">
@@ -62,11 +62,17 @@
                         </a>
                     </div>
 
-                    <p class="purchase__address">
-                        〒{{ $address['postcode'] }}<br>
-                        {{ $address['address'] }}
-                        {{ $address['building'] }}
-                    </p>
+                    @if($address['postcode'] && $address['address'])
+                        <p class="purchase__address">
+                            〒{{ $address['postcode'] }}<br>
+                            {{ $address['address'] }}
+                            {{ $address['building'] }}
+                        </p>
+                    @else
+                        <p class="purchase__address">
+                            配送先住所が未設定です
+                        </p>
+                    @endif
                     <input type="hidden" name="postcode" value="{{ $address['postcode'] }}">
                     <input type="hidden" name="address" value="{{ $address['address'] }}">
                     <input type="hidden" name="building" value="{{ $address['building'] }}">

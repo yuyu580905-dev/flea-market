@@ -11,12 +11,20 @@ class CommentController extends Controller
 {
     public function store(CommentRequest $request, Item $item)
     {
-        Comment::create([
+        $comment = Comment::create([
             'user_id' => Auth::id(),
             'item_id' => $item->id,
             'comment' => $request->comment,
         ]);
 
-        return redirect()->back();
+        // user.profile を読み込む
+        $comment->load('user.profile');
+
+        return response()->json([
+            'user_name' => $comment->user->name,
+            'user_image' => $comment->user->profile?->profile_image,
+            'comment' => $comment->comment,
+            'comments_count' => $item->comments()->count(),
+        ]);
     }
 }

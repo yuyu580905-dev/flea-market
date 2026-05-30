@@ -79,7 +79,13 @@
     gap: 40px;
 }
 
-/* 画像 */
+/* 画像ラッパー */
+.mypage__image-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+
+/* 画像枠 */
 .mypage__image {
     width: 100%;
     height: auto;
@@ -88,10 +94,44 @@
     background-color: #ccc;
 }
 
+/* imgタグ */
 .mypage__image-tag {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* SOLD */
+.mypage__sold {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    z-index: 10;
+}
+
+/* 三角 */
+.mypage__sold::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-top: 90px solid #f00;
+    border-right: 90px solid transparent;
+}
+
+/* SOLD文字 */
+.mypage__sold::after {
+    content: "SOLD";
+    position: absolute;
+    top: 18px;
+    left: 5px;
+    transform: rotate(-45deg);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 /* 商品名 */

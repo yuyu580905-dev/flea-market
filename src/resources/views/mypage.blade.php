@@ -43,9 +43,14 @@
             @foreach($items as $item)
                 <div class="mypage__card">
 
-                    <div class="mypage__image">
-                        <img src="{{ asset('storage/items/' . $item->image) }}" alt="{{ $item->name }}"
-                            class="mypage__image-tag">
+                    <div class="mypage__image-wrapper">
+                        @if($item->is_sold)
+                            <div class="mypage__sold">SOLD</div>
+                        @endif
+
+                        <div class="mypage__image">
+                            <img src="{{ $item->image_url }}" alt="{{ $item->name }}" class="mypage__image-tag">
+                        </div>
                     </div>
 
                     <p class="mypage__item-name">

@@ -15,12 +15,17 @@ class LikeController extends Controller
 
             // いいね解除
             $item->likedUsers()->detach($user->id);
+            $liked = false;
         } else {
 
             // いいね追加
             $item->likedUsers()->attach($user->id);
+            $liked = true;
         }
 
-        return back();
+        return response()->json([
+            'liked' => $liked,
+            'likes_count' => $item->likedUsers()->count(),
+        ]);
     }
 }

@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
             ConditionsTableSeeder::class,
             UsersTableSeeder::class,
             ItemsTableSeeder::class,
-            LikesTableSeeder::class,
         ]);
     }
 }

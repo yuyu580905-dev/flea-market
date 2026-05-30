@@ -36,8 +36,9 @@
 
                 {{-- ユーザー名 --}}
                 <div class="form__group">
-                    <label class="form__label">ユーザー名</label>
-                    <input class="form__input" type="text" name="name" value="{{ old('name', $user->name ?? '') }}">
+                    <label for="name" class="form__label">ユーザー名</label>
+                    <input class="form__input" type="text" name="name" id="name"
+                        value="{{ old('name', $user->name ?? '') }}">
                     @error('name')
                         <div class="form__error">{{ $message }}</div>
                     @enderror
@@ -45,8 +46,8 @@
 
                 {{-- 郵便番号 --}}
                 <div class="form__group">
-                    <label class="form__label">郵便番号</label>
-                    <input class="form__input" type="text" name="postcode"
+                    <label for="postcode" class="form__label">郵便番号</label>
+                    <input class="form__input" type="text" name="postcode" id="postcode"
                         value="{{ old('postcode', $user->profile->postcode ?? '') }}">
                     @error('postcode')
                         <div class="form__error">{{ $message }}</div>
@@ -55,8 +56,8 @@
 
                 {{-- 住所 --}}
                 <div class="form__group">
-                    <label class="form__label">住所</label>
-                    <input class="form__input" type="text" name="address"
+                    <label for="address" class="form__label">住所</label>
+                    <input class="form__input" type="text" name="address" id="address"
                         value="{{ old('address', $user->profile->address ?? '') }}">
                     @error('address')
                         <div class="form__error">{{ $message }}</div>
@@ -65,8 +66,8 @@
 
                 {{-- 建物名 --}}
                 <div class="form__group">
-                    <label class="form__label">建物名</label>
-                    <input class="form__input" type="text" name="building"
+                    <label for="building" class="form__label">建物名</label>
+                    <input class="form__input" type="text" name="building" id="building"
                         value="{{ old('building', $user->profile->building ?? '') }}">
                 </div>
 
