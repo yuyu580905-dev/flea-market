@@ -55,6 +55,7 @@ class MyListTest extends TestCase
     public function test_sold_label_is_displayed_for_purchased_items()
     {
         /** @var \App\Models\User $user */
+        // ユーザー作成
         $user = User::factory()->create();
 
         // 売り切れ商品作成

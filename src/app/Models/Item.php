@@ -24,6 +24,9 @@ class Item extends Model
         'brand',
         'is_sold',
     ];
+    protected $casts = [
+        'is_sold' => 'boolean',
+    ];
     public function getImageUrlAttribute()
     {
         return Str::startsWith($this->image, 'http')

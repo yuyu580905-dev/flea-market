@@ -299,18 +299,18 @@
                         if (data.user_image) {
 
                             profileImageHtml = `
-                                            <img
-                                                src="/storage/profiles/${data.user_image}"
-                                                alt="${data.user_name}"
-                                                class="item-detail__comment-user-image-element"
-                                            >
-                                        `;
+                                <img
+                                    src="/storage/profiles/${data.user_image}"
+                                    alt="${data.user_name}"
+                                    class="item-detail__comment-user-image-element"
+                                >
+                            `;
 
                         } else {
 
                             profileImageHtml = `
-                                            <div class="item-detail__comment-user-placeholder"></div>
-                                        `;
+                                <div class="item-detail__comment-user-placeholder"></div>
+                            `;
                         }
 
                         /*
@@ -320,26 +320,26 @@
                         */
 
                         const newComment = `
-                                        <div class="item-detail__comment">
+                            <div class="item-detail__comment">
 
-                                            <div class="item-detail__comment-user">
+                                <div class="item-detail__comment-user">
 
-                                                <div class="item-detail__comment-user-image">
-                                                    ${profileImageHtml}
-                                                </div>
+                                    <div class="item-detail__comment-user-image">
+                                        ${profileImageHtml}
+                                    </div>
 
-                                                <div class="item-detail__comment-user-name">
-                                                    ${data.user_name}
-                                                </div>
+                                    <div class="item-detail__comment-user-name">
+                                        ${data.user_name}
+                                    </div>
 
-                                            </div>
+                                </div>
 
-                                            <div class="item-detail__comment-body">
-                                                ${data.comment}
-                                            </div>
+                                <div class="item-detail__comment-body">
+                                    ${data.comment}
+                                </div>
 
-                                        </div>
-                                    `;
+                            </div>
+                        `;
 
                         // コメント追加
                         commentList.insertAdjacentHTML(

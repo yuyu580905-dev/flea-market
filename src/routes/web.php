@@ -8,7 +8,7 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MyPageController;
 
-// 公開
+// 公開（トップページ（商品一覧）・商品詳細ページ）
 Route::get('/', [ItemController::class, 'index']);
 Route::get('/item/{item}', [ItemController::class, 'show']);
 

@@ -23,7 +23,7 @@ class ItemController extends Controller
             } else {
                 $user = Auth::user();
                 $query = $user
-                    ->likes()
+                    ->likedItems()
                     ->where('items.user_id', '!=', Auth::id());
 
                 if ($keyword) {
