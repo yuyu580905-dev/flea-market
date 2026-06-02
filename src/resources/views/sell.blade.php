@@ -90,7 +90,7 @@
                     @enderror
 
                     <label for="brand" class="form__label">ブランド名</label>
-                    <input type="text" name="brand" id="brand" class="form__input">
+                    <input type="text" name="brand" id="brand" class="form__input" value="{{ old('brand') }}">
 
                     <label for="description" class="form__label">商品の説明</label>
                     <textarea name="description" id="description"
