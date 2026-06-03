@@ -20,22 +20,22 @@ class ItemDetailTest extends TestCase
     use RefreshDatabase;
     public function test_item_detail_page_displays_all_required_information()
     {
-        // 商品状態
+        // 商品の状態を作成
         $condition = Condition::create([
             'name' => 'テスト状態',
         ]);
 
-        // コメントしたユーザー
+        // コメントしたユーザーを作成
         $user = User::factory()->create([
             'name' => 'テストユーザー',
         ]);
 
-        // カテゴリ
+        // カテゴリを作成
         $category = Category::create([
             'name' => 'ファッション',
         ]);
 
-        // 商品
+        // 商品を作成
         $item = Item::factory()->create([
             'condition_id' => $condition->id,
             'name' => '腕時計',
@@ -48,10 +48,10 @@ class ItemDetailTest extends TestCase
         // 商品とカテゴリの紐付け（多対多）
         $item->categories()->attach($category->id);
 
-        // いいね（pivot）
+        // いいね登録（pivotでユーザーと商品を紐づける）
         $item->likedUsers()->attach($user->id);
 
-        // コメント
+        // コメントを作成
         Comment::create([
             'user_id' => $user->id,
             'item_id' => $item->id,
@@ -112,12 +112,12 @@ class ItemDetailTest extends TestCase
 
     public function test_multiple_categories_are_displayed_on_item_detail_page()
     {
-        // 商品状態
+        // 商品の状態を作成
         $condition = Condition::create([
             'name' => '良好',
         ]);
 
-        // 商品
+        // 商品を作成
         $item = Item::factory()->create([
             'condition_id' => $condition->id,
         ]);

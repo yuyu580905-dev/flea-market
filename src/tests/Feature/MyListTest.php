@@ -27,19 +27,20 @@ class MyListTest extends TestCase
         // ユーザー作成
         $user = User::factory()->create();
 
-        // 商品作成
+        // いいねした商品を作成
         $likedItem = Item::factory()->create([
             'name' => '腕時計',
         ]);
 
+        // いいねしてない商品を作成
         $notLikedItem = Item::factory()->create([
             'name' => 'バッグ',
         ]);
 
-        // いいね登録
+        // いいね登録(ユーザーと商品を紐づける)
         $likedItem->likedUsers()->attach($user->id);
 
-        // マイリスト表示
+        // ログインしてマイリスト表示
         $response = $this->actingAs($user)
             ->get('/?tab=mylist');
 
@@ -58,19 +59,20 @@ class MyListTest extends TestCase
         // ユーザー作成
         $user = User::factory()->create();
 
-        // 売り切れ商品作成
+        // 売り切れ商品を作成
         $soldItem = Item::factory()->create([
             'name' => '腕時計',
             'is_sold' => true,
         ]);
 
-        // いいね登録
+        // いいね登録（ユーザーと商品を紐づける）
         $soldItem->likedUsers()->attach($user->id);
 
         // ログインしてマイリスト表示
         $response = $this->actingAs($user)
             ->get('/?tab=mylist');
 
+        // ステータスコードが200であることを確認
         $response->assertStatus(200);
 
         // 売り切れ商品の名前とSOLDラベルが表示されることを確認
@@ -79,18 +81,21 @@ class MyListTest extends TestCase
     }
     public function test_nothing_is_displayed_for_guest_users_in_mylist()
     {
+        // ユーザー作成
         $user = User::factory()->create();
 
+        // いいねした商品を作成
         $item = Item::factory()->create([
             'name' => '腕時計',
         ]);
 
-        // いいね登録
+        // いいね登録（ユーザーと商品を紐づける）
         $item->likedUsers()->attach($user->id);
 
         // ゲストユーザーとしてマイリスト表示
         $response = $this->get('/?tab=mylist');
 
+        // ステータスコードが200であることを確認
         $response->assertStatus(200);
 
         // ゲストユーザーには商品が表示されないことを確認

@@ -23,7 +23,7 @@ class SearchTest extends TestCase
     }
     public function test_items_can_be_searched_by_partial_match()
     {
-        // 商品作成
+        // 商品を作成
         $item1 = Item::factory()->create([
             'name' => '腕時計',
         ]);
@@ -36,9 +36,10 @@ class SearchTest extends TestCase
             'name' => 'バッグ',
         ]);
 
-        // 検索実行
+        // 検索実行（検索キーワードは「腕」）
         $response = $this->get('/?keyword=腕');
 
+        // ステータスコードが200であることを確認
         $response->assertStatus(200);
 
         // 部分一致商品は表示
@@ -51,22 +52,25 @@ class SearchTest extends TestCase
     public function test_search_keyword_is_retained_in_mylist()
     {
         /** @var \App\Models\User $user */
+        // ユーザー作成
         $user = User::factory()->create();
 
+        // 商品作成
         $item = Item::factory()->create([
             'name' => '腕時計',
         ]);
 
-        // いいね登録
+        // いいね登録（ユーザーと商品を紐づける）
         $item->likedUsers()->attach($user->id);
 
-        // keyword付きでマイリストアクセス
+        // ログインしてkeyword付きでマイリストアクセス
         $response = $this->actingAs($user)
             ->get('/?tab=mylist&keyword=腕');
 
+        // ステータスコードが200であることを確認
         $response->assertStatus(200);
 
-        // 検索キーワード保持確認
+        // 検索キーワードが入力欄に保持されていることを確認
         $response->assertSee('value="腕"', false);
     }
 }

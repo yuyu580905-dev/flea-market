@@ -79,6 +79,7 @@ class LoginTest extends TestCase
             'password' => bcrypt('password123'),
         ]);
 
+        // ログインページからのリクエストで、正しい資格情報の場合のテスト
         $response = $this->post('/login', [
             'email' => 'test@example.com',
             'password' => 'password123',

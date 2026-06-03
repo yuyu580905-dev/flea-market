@@ -50,7 +50,10 @@ class ItemListTest extends TestCase
             'is_sold' => true,
         ]);
 
+        // 商品一覧ページにアクセス
         $response = $this->get('/');
+
+        // ステータスコードが200であることを確認
         $response->assertStatus(200);
 
         // SOLDラベルと商品名が順番に表示されていることを確認
@@ -62,15 +65,16 @@ class ItemListTest extends TestCase
     public function test_user_items_are_not_displayed()
     {
         /** @var \App\Models\User $user */
+        // ユーザーを作成
         $user = User::factory()->create();
 
-        // 自分の商品
+        // 自分の商品を作成
         $myItem = Item::factory()->create([
             'user_id' => $user->id,
             'name' => '自分の商品',
         ]);
 
-        // 他人の商品
+        // 他人の商品を作成
         $otherItem = Item::factory()->create([
             'name' => '他人の商品',
         ]);
@@ -78,6 +82,7 @@ class ItemListTest extends TestCase
         // ログイン状態で商品一覧ページにアクセス
         $response = $this->actingAs($user)->get('/');
 
+        // ステータスコードが200であることを確認
         $response->assertStatus(200);
 
         // 自分の出品した商品が表示されていないことを確認（他人の商品は表示される）
