@@ -92,6 +92,71 @@ PHPUnitを使用して以下の機能テストを実装
 - ユーザー情報変更
 - 商品出品情報登録
 
+## PHPUnit テスト実行
+
+本アプリではテスト実行時に `demo_test` データベースを使用します
+
+### 1. テスト用データベース作成
+
+MySQLコンテナへ接続し、テスト用データベースを作成
+
+```sql
+CREATE DATABASE demo_test;
+```
+
+### 2. .env.testing を作成
+
+`.env` をコピーして `.env.testing` を作成
+
+```bash
+cp .env .env.testing
+```
+
+以下の内容へ変更
+
+```env
+APP_NAME=Laravel
+APP_ENV=testing
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost
+
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=demo_test
+DB_USERNAME=root
+DB_PASSWORD=root
+
+CACHE_DRIVER=array
+SESSION_DRIVER=array
+QUEUE_CONNECTION=sync
+```
+
+### 3. テスト用アプリケーションキー生成
+
+```bash
+php artisan key:generate --env=testing
+```
+
+### 4. キャッシュの削除
+
+```bash
+php artisan config:clear
+```
+
+### 5. マイグレーションを実行してテスト用のテーブルを作成
+
+```bash
+php artisan migrate --env=testing
+```
+
+### 6. PHPUnit実行
+
+```bash
+php artisan test
+```
+
 ## 使用技術(実行環境)
 
 - PHP8.1
