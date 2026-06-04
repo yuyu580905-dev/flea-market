@@ -64,11 +64,11 @@ php artisan db:seed
 
 ## メール認証について
 
-本アプリではMailtrapを使用しています。
+本アプリではMailtrapを使用しています
 
 1. Mailtrapに登録
 2. Sandboxを作成
-3. SMTP情報を.envに設定(Laravel環境構築 4.で設定済み)
+3. SMTP情報を.envに設定（Laravel環境構築 4.で設定済み）
 4. `php artisan config:clear`
 
 ## テスト
@@ -97,6 +97,9 @@ PHPUnitを使用して以下の機能テストを実装
 - PHP8.1
 - Laravel8.75
 - MySQL8.0
+- Nginx
+- Docker
+- Docker Compose
 
 ## ER図
 
