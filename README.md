@@ -112,7 +112,7 @@ CREATE DATABASE demo_test;
 cp .env .env.testing
 ```
 
-以下の内容へ変更
+.env.testingを以下の内容へ変更
 
 ```env
 APP_NAME=Laravel
@@ -157,7 +157,7 @@ php artisan migrate --env=testing
 php artisan test
 ```
 
-## 使用技術(実行環境)
+## 使用技術（実行環境）
 
 - PHP8.1
 - Laravel8.75
