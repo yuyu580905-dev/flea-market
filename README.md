@@ -6,7 +6,8 @@
 
 1. `git clone git@github.com:yuyu580905-dev/flea-market.git`
 2. DockerDesktopアプリを立ち上げる
-3. `docker-compose up -d --build`
+3. `cd flea-market/`
+4. `docker-compose up -d --build`
 
 **Laravel環境構築**
 
@@ -18,7 +19,7 @@
 cp .env.example .env
 ```
 
-4. .envに以下の環境変数を追加
+4. .envに以下の環境変数を設定
 
 ```env
 DB_CONNECTION=mysql
@@ -36,6 +37,9 @@ MAIL_PASSWORD=your_mailtrap_password
 MAIL_ENCRYPTION=tls
 MAIL_FROM_ADDRESS=test@example.com
 MAIL_FROM_NAME="${APP_NAME}"
+
+STRIPE_KEY=your_stripe_publishable_key
+STRIPE_SECRET=your_stripe_secret_key
 ```
 
 5. アプリケーションキーの作成
@@ -62,18 +66,58 @@ php artisan storage:link
 php artisan db:seed
 ```
 
-## メール認証について
+## メール認証・Stripe設定について
 
-本アプリではMailtrapを使用しています
+本アプリではメール認証にMailtrap、決済機能にStripeを使用しています
+
+### Mailtrap設定
 
 1. Mailtrapに登録
 2. Sandboxを作成
-3. SMTP情報を.envに設定（Laravel環境構築 4.で設定済み）
-4. `php artisan config:clear`
+3. SMTP情報を取得
+4. .envへ以下を設定
+
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=your_mailtrap_username
+MAIL_PASSWORD=your_mailtrap_password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=test@example.com
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+設定後、以下を実行してください
+
+```bash
+php artisan config:clear
+```
+
+### Stripe設定
+
+商品購入機能を利用する場合は、StripeのテストAPIキーを設定してください
+
+1. Stripeアカウントを作成
+2. 開発者ダッシュボードからテスト用APIキーを取得
+3. .envへ以下を設定
+
+```env
+STRIPE_KEY=pk_test_xxxxxxxxxxxxxxxxxxxxx
+STRIPE_SECRET=sk_test_xxxxxxxxxxxxxxxxxxxxx
+```
+
+設定後、以下を実行してください
+
+```bash
+php artisan config:clear
+```
+
+※ StripeのAPIキーが未設定の場合、購入処理実行時に認証エラーが発生します
 
 ## テスト
 
-PHPUnitを使用して以下の機能テストを実装
+PHPUnitを使用して以下の機能テストを実装しています
 
 - 会員登録
 - メール認証機能
@@ -104,9 +148,36 @@ MySQLコンテナへ接続し、テスト用データベースを作成
 CREATE DATABASE demo_test;
 ```
 
-### 2. .env.testing を作成
+### 2. database.php にテスト用接続を追加
 
-`.env` をコピーして `.env.testing` を作成
+`config/database.php` の `connections` 配列内で、既存の `mysql` 接続をコピーし、その直下に `mysql_test` 接続を追加してください  
+配列の中の`'database'` `'username'` `'password'` を以下の内容へ変更します
+
+```php
+'mysql_test' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', '127.0.0.1'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => 'demo_test',
+            'username' => 'root',
+            'password' => 'root',
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+```
+
+### 3. .env.testing を作成
+
+PHPコンテナへ接続し、`.env` をコピーして `.env.testing` を作成
 
 ```bash
 cp .env .env.testing
@@ -116,42 +187,47 @@ cp .env .env.testing
 
 ```env
 APP_NAME=Laravel
-APP_ENV=testing
+APP_ENV=test
 APP_KEY=
 APP_DEBUG=true
 APP_URL=http://localhost
 
-DB_CONNECTION=mysql
+DB_CONNECTION=mysql_test
 DB_HOST=mysql
 DB_PORT=3306
 DB_DATABASE=demo_test
 DB_USERNAME=root
 DB_PASSWORD=root
-
-CACHE_DRIVER=array
-SESSION_DRIVER=array
-QUEUE_CONNECTION=sync
 ```
 
-### 3. テスト用アプリケーションキー生成
+### 4. テスト用アプリケーションキー生成
 
 ```bash
 php artisan key:generate --env=testing
 ```
 
-### 4. キャッシュの削除
+### 5. キャッシュの削除
 
 ```bash
 php artisan config:clear
 ```
 
-### 5. マイグレーションを実行してテスト用のテーブルを作成
+### 6. マイグレーションを実行してテスト用のテーブルを作成
 
 ```bash
 php artisan migrate --env=testing
 ```
 
-### 6. PHPUnit実行
+### 7. phpunit.xml の編集
+
+プロジェクトの直下の `phpunit.xml` を開き、`DB_CONNECTION` と `DB_DATABASE` を以下の内容へ変更
+
+```php
+<server name="DB_CONNECTION" value="mysql_test"/>
+<server name="DB_DATABASE" value="demo_test"/>
+```
+
+### 8. PHPUnit実行
 
 ```bash
 php artisan test
