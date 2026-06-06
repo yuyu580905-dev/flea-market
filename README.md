@@ -148,34 +148,7 @@ MySQLコンテナへ接続し、テスト用データベースを作成
 CREATE DATABASE demo_test;
 ```
 
-### 2. database.php にテスト用接続を追加
-
-`config/database.php` の `connections` 配列内で、既存の `mysql` 接続をコピーし、その直下に `mysql_test` 接続を追加してください  
-配列の中の`'database'` `'username'` `'password'` を以下の内容へ変更します
-
-```php
-'mysql_test' => [
-            'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => 'demo_test',
-            'username' => 'root',
-            'password' => 'root',
-            'unix_socket' => env('DB_SOCKET', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'strict' => true,
-            'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
-        ],
-```
-
-### 3. .env.testing を作成
+### 2. .env.testing を作成
 
 PHPコンテナへ接続し、`.env` をコピーして `.env.testing` を作成
 
@@ -200,34 +173,25 @@ DB_USERNAME=root
 DB_PASSWORD=root
 ```
 
-### 4. テスト用アプリケーションキー生成
+### 3. テスト用アプリケーションキー生成
 
 ```bash
 php artisan key:generate --env=testing
 ```
 
-### 5. キャッシュの削除
+### 4. キャッシュの削除
 
 ```bash
 php artisan config:clear
 ```
 
-### 6. マイグレーションを実行してテスト用のテーブルを作成
+### 5. マイグレーションを実行してテスト用のテーブルを作成
 
 ```bash
 php artisan migrate --env=testing
 ```
 
-### 7. phpunit.xml の編集
-
-プロジェクトの直下の `phpunit.xml` を開き、`DB_CONNECTION` と `DB_DATABASE` を以下の内容へ変更
-
-```php
-<server name="DB_CONNECTION" value="mysql_test"/>
-<server name="DB_DATABASE" value="demo_test"/>
-```
-
-### 8. PHPUnit実行
+### 6. PHPUnit実行
 
 ```bash
 php artisan test
