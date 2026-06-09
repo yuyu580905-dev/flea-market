@@ -16,7 +16,7 @@
 <body>
 
     <header class="header">
-        <div class="header__inner">
+        <div class="header__inner header__inner--between">
             <a class="header__logo" href="/">
                 <img class="header__logo-image" src="{{ asset('images/logo.png') }}" alt="COACHTECH">
             </a>

@@ -12,9 +12,16 @@ body {
 .header__inner {
     width: 100%;
     max-width: 1540px;
+    min-height: 72px;
     margin: 0 auto;
     padding: 20px 40px;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.header__logo {
+    display: block;
 }
 
 .header__logo-image {
@@ -34,8 +41,6 @@ body {
 /* header layout upgrade */
 
 .header__inner--between {
-    display: flex;
-    align-items: center;
     justify-content: space-between;
     gap: 20px;
 }
